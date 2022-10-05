@@ -1,0 +1,122 @@
+
+PROJETO NLW ESPORTES:
+  - CRIAR UM BACKEND: EM NODE
+  - CRIAR UM FRONTEND: EM REACTJS
+  - APLICATIVO MOBILE: EM REACT NATIVE.
+
+  - tem que ter o NODE e o NPM(gerenciador de pacotes) instalados;
+
+no powershell:
+
+  CRIAÇÃO DO PROJETO:
+trilhaignite092022\esports:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BACKEND - NODE com TYPESCRIPT:
+1) criar uma pasta de nome server(pasta raiz);
+2) iniciar um projeto NODE: 
+  - npm init -y. (-y) - confirma as perguntas na criação do projeto;
+  - é criado um arquivo package.json - vai ter as definições principais do projeto; 
+   - ficam as referências das dependências.
+
+3) instalar a dependência express(onde serão criadas as rotas): npm install express.
+  - junto a instalação do express, é instalada:
+      - a pasta node_modules(ficam outras dependências instaladas do projeto);
+      - o arquivo package-lock.json(é para o npm ter uma referência mais rápida de dependências em comum para instalar mais rápido);
+      
+4) na pasta raiz criar o arquivo:
+  - .gitignore para colocar a pasta node_modules e  ocultar para envio ao github;
+
+5) dentro da pasta server, criar uma pasta SRC: mkdir src
+
+6) criar um arquivo, dentro da pasta src, de nome: server.js
+  - no arquivo package.json alterar o caminho do main colocando \src - no main fica o arquivo principal do projeto:
+  "main": "src/server.js" 
+
+
+7) importação do express: 
+  - no package.json incluir a linha: "type": "module",
+  - muda no nome do arquivo server.js: server.mjs 
+  - dentro do server.mjs faz a importação: 
+  - import express from 'express';
+  - criada uma rota get;
+  - informada uma porta para acesso ao localhost.
+
+            import express from 'express'
+
+            const app = express()
+
+            // criada uma rota:
+            app.get('/ads', (request, response) => {
+              return response.json([
+                { id: 1, name: 'anúncio 1' },
+                { id: 2, name: 'anúncio 2' },
+                { id: 3, name: 'anúncio 3' }
+              ])
+            })
+            // indica a porta do localhost:
+            app.listen(3333)
+
+typescript:
+-  linguagem adicional ao js; 
+- tipagem estatica(processo que vai testando os caminhos do código).
+
+  7) instalar o typescript para desenvolvimento que ficará no package.json: 
+  npm i typescript -D  
+
+8) alterar a extensão do server.mjs: server.ts.
+ 
+  Como o node não entender o typescript, é necessário fazer uma conversão:  .ts PARA UM FORMATO QUE O NODE ENTENDA:
+
+9) é necessário na tag script do package.json, converter o typescript para js, incluindo uma linha build: 
+
+10) criar um arquivo de configuração do typescript - executa o arquivo tsc que está na pasta .bin da node_module  :  
+  npx tsc --init
+
+11) Será gerado o arquivo: tsconfig.json
+
+11) para criar um arquivo js(que é a conversão do arquivo  .ts) é necessário: 
+npm run build
+-- gerará o arquivo de configuração: tsconfig.json
+
+node src/server.js: dá erro e será necessário alterar o tsconfig.json
+
+12) alterar no tsconfig.json:
+
+"module": "commonjs",   para "module": "ES2020",  
+
+node src/server.js: funcionou.
+
+13) alterar também no tsconfig.json:
+descomentar e /src como pasta raiz: "rootDir": "./src",
+para gerar os arquivos js no diretório diferente do ts: "outDir": "./build",  
+
+14) npm run build
+
+descomentar a linha // "moduleResolution": "node",
+
+
+
+por o typescript não ser uma biblioteca nativa do express, é necessário instalar o pacote:
+https://www.npmjs.com/package/express clicar em dt e instalar o pacote.
+
+npm install @types/express -D
+
+instalar a ferramenta para atualizar a página na medida que é feita atualização no código:
+npm i ts-node-dev -D
+
+e no package.json: "script":
+criar "dev": "tsnd src/server/ts"
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FRONT END - React:
+Ferramenta rápida: vite(vitejs.dev)
+
+criar um projeto react co o vite:
+
+na pasta\trilhaiginite092022
+npm create vite@latest
+
+
+
